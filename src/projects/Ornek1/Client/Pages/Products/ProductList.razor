@@ -1,0 +1,44 @@
+﻿@page "/product/list"
+@using Ornek1.Shared.Models.Products.GetList;
+@using System.Text.Json;
+
+@inject HttpClient _httpClient
+<PageTitle>Ürün Listesi</PageTitle>
+
+<div class="row ms-1">
+    @{
+        if (IntialLoading)
+        {
+            foreach (var item in Products.Items)
+            {
+                var productNewPrice = item.Price - item.Discount;
+                <div class="col-sm-6 col-lg-4 col-xxl-3 mt-1">
+                    <div class="card">
+                        <img src="@item.ProductImages[0].ImageUrl" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <p class="card-text">@item.Description</p>
+                            <p class="card-text float-start text-secondary mx-1"><s>@item.Price ₺</s></p> <p class="card-text">@productNewPrice ₺</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+</div>
+
+@code {
+    private ProductListModel Products = new ProductListModel();
+    private bool IntialLoading = false;
+    protected override async Task OnInitializedAsync()
+    {
+        IntialLoading = false;
+        var cancelToken = new CancellationTokenSource();
+
+        // var ddd = new ProductListModel();
+        // _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("data", "");
+        Products = await _httpClient.GetFromJsonAsync<ProductListModel>("Products?PageRequest.Page=0&PageRequest.PageSize=10", cancelToken.Token);
+        IntialLoading = true;
+    }
+}

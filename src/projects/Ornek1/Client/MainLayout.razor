@@ -1,0 +1,19 @@
+﻿@using Ornek1.Client.Components
+@inherits LayoutComponentBase
+
+<div class="container-fuild">
+    <div class="d-flex flex-row mb-3">
+         <Sidebar/>
+        <div class="d-flex flex-column w-100">
+            <div class="row"> 
+                <div class="col"><Navbar/></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    @Body
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</div>

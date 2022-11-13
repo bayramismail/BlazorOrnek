@@ -1,0 +1,19 @@
+﻿<div class="@SidebarClass">
+    <h1>Sidebar</h1>
+    <button @onclick="ToggleMenuClick">D</button>
+</div>
+
+@code {
+    public string SidebarClass = "sidebar";
+    public void ToggleMenuClick()
+    {
+        if (SidebarClass=="sidebar")
+        {
+            SidebarClass = "sidebar show";
+        }
+        else
+        {
+            SidebarClass = "sidebar";
+        }
+    }
+}

@@ -1,0 +1,13 @@
+﻿.sidebar {
+    background-color: white;
+    height: 100vh;
+    width: 280px;
+    box-shadow: -5px -8px 20px 0px rgb(26 31 36 / 71%);
+}
+.show {
+    width: 80px;
+    height: 100vh;
+}
+.show h1 {
+    display:none;
+}
